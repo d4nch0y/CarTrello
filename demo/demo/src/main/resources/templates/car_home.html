@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CarTrello - Discover Your Dream Ride</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .hero-header {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-family: 'Arial Rounded MT Bold', sans-serif;
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(to right, #fff, #ddd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn-custom {
+            background-color: var(--accent-color);
+            border: none;
+            padding: 0.5rem 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-custom:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+        }
+
+        .search-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .search-title {
+            color: var(--secondary-color);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .search-title:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-color);
+        }
+
+        .car-card {
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+        }
+
+        .car-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+        }
+
+        .car-img {
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .car-card:hover .car-img {
+            transform: scale(1.05);
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .car-title {
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .car-detail {
+            color: #7f8c8d;
+            margin-bottom: 0.3rem;
+        }
+
+        .car-detail i {
+            color: var(--primary-color);
+            margin-right: 5px;
+        }
+
+        .owner-badge {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+
+        .btn-details {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            margin-top: 1rem;
+            width: 100%;
+            transition: all 0.3s;
+        }
+
+        .btn-details:hover {
+            background-color: #2980b9;
+        }
+
+        .reset-btn {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .reset-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
+        }
+    </style>
+</head>
+<body>
+<!-- Hero Header -->
+<header class="hero-header">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <i class="fas fa-car me-3" style="font-size: 2rem; color: var(--accent-color);"></i>
+                <h1 class="logo m-0">CarTrello</h1>
+            </div>
+            <div>
+                <a href="/car/add" class="btn btn-custom me-2">
+                    <i class="fas fa-plus me-1"></i> Add Car
+                </a>
+                <a href="/logout" class="btn btn-light">
+                    <i class="fas fa-sign-out-alt me-1"></i> Logout
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <!-- Title and Back Button -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-dark mb-0">
+            <i class="fas fa-car-side me-2" style="color: var(--accent-color);"></i>
+            Available Cars
+        </h2>
+        <a href="/home" class="btn reset-btn">
+            <i class="fas fa-sync-alt me-1"></i> Reset Search
+        </a>
+    </div>
+
+    <!-- Search Card -->
+    <div class="search-card">
+        <h3 class="search-title">Find Your Car</h3>
+        <form method="get" action="/home" class="row g-3">
+            <div class="col-md-3">
+                <div class="input-group">
+                    <span class="input-group-text bg-white"><i class="fas fa-car text-primary"></i></span>
+                    <input type="text" name="brand" class="form-control" placeholder="Brand">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="input-group">
+                    <span class="input-group-text bg-white"><i class="fas fa-tag text-primary"></i></span>
+                    <input type="text" name="model" class="form-control" placeholder="Model">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="input-group">
+                    <span class="input-group-text bg-white"><i class="fas fa-calendar-alt text-primary"></i></span>
+                    <input type="number" name="year" class="form-control" placeholder="Year">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="input-group">
+                    <span class="input-group-text bg-white"><i class="fas fa-user text-primary"></i></span>
+                    <input type="text" name="owner" class="form-control" placeholder="Owner">
+                </div>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-custom w-100">
+                    <i class="fas fa-search me-1"></i> Search
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Car Grid -->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <div class="col" th:each="car : ${cars}">
+            <div class="car-card h-100">
+                <div style="overflow: hidden;">
+                    <img th:src="@{'/uploads/' + ${car.photoFilename}}" class="car-img w-100" alt="Car Image">
+                </div>
+                <div class="card-body">
+                    <h5 class="car-title" th:text="${car.brand + ' ' + car.model}"></h5>
+                    <p class="car-detail">
+                        <i class="fas fa-calendar-alt"></i> Year: <span th:text="${car.year}"></span>
+                    </p>
+                    <span class="owner-badge">
+                            <i class="fas fa-user"></i> <span th:text="${car.ownerUsername}">Owner</span>
+                        </span>
+                    <a th:href="@{/car/{id}(id=${car.id})}" class="btn btn-details">
+                        <i class="fas fa-info-circle me-1"></i> View Details
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

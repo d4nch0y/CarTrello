@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url(/uploads/BMWe91diviq.jpg);
+            background-size: 102%;
+            background-position: bottom -565px left -9px;
+            background-repeat: repeat;
+            background-attachment: fixed;
+            opacity: 0.9;
+            z-index: -1;
+}
+
+        .form-container {
+            background: transparent;
+            padding: 2.5rem;
+            border-radius: 10px;
+
+            width: 380px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .logo i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--light-color);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--light-color);
+        }
+
+        input {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1.2rem;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
+        button {
+    width: 100%; /* Match the width of input fields */
+    padding: 0.8rem; /* Uniform padding (same as inputs) */
+    border: none;
+    background: var(--accent-color);
+    color: white;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 0px 14px;
+    transition: background-color 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem; /* Space between icon and text */
+}
+
+        button:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+        }
+
+        .error {
+            color: var(--accent-color);
+            text-align: center;
+            margin: 1rem 0;
+            font-weight: 500;
+        }
+
+        .success {
+            color: #28a745;
+            text-align: center;
+            margin: 1rem 0;
+            font-weight: 500;
+        }
+
+        .links {
+            text-align: center;
+            margin-top: 1.5rem;
+            margin: 0px 26px;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center ;
+            margin: 1.5rem 1.2rem;
+            color: #6c757d;
+        }
+
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #dee2e6;
+
+        }
+
+        .divider::before {
+            margin-right: 1rem;
+            margin: 0px 30px;
+        }
+
+        .divider::after {
+            margin-left: 1rem;
+            margin: 0px 30px;
+        }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <div class="logo">
+        <i class="fas fa-car"></i>
+    </div>
+    <h1>Login</h1>
+
+    <!-- Success message if coming from registration -->
+    <p class="success" th:if="${param.registered}">
+        <i class="fas fa-check-circle"></i> User successfully registered. Please log in.
+    </p>
+
+    <!-- Error message for bad login -->
+    <p class="error" th:if="${param.error}">
+        <i class="fas fa-exclamation-circle"></i> Invalid username or password
+    </p>
+
+    <form th:action="@{/login}" method="post">
+        <div>
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" required placeholder="Enter your username"/>
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required placeholder="Enter your password"/>
+        </div>
+        <button type="submit">
+            <i class="fas fa-sign-in-alt"></i> Login
+        </button>
+    </form>
+
+    <div class="divider">OR</div>
+
+    <div class="links">
+        <a href="/register">
+            <i class="fas fa-user-plus"></i> Create an account
+        </a>
+    </div>
+</div>
+</body>
+</html>
