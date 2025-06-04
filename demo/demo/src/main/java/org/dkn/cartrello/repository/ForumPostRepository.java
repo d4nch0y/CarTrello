@@ -1,7 +1,7 @@
 package org.dkn.cartrello.repository;
 
-import org.dkn.cartrello.Models.Car;
-import org.dkn.cartrello.Models.ForumPost;
+import org.dkn.cartrello.model.Car;
+import org.dkn.cartrello.model.ForumPost;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 

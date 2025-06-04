@@ -37,172 +37,172 @@
             background-attachment: fixed;
             opacity: 0.9;
             z-index: -1;
-}
+        }
 
         .form-container {
-            background: transparent;
+            background: rgba(0, 0, 0, 0.5);
             padding: 2.5rem;
             border-radius: 10px;
-
             width: 380px;
-            position: relative;
-            z-index: 1;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
         }
 
         .logo {
-            text-align: center;
             margin-bottom: 1.5rem;
         }
 
         .logo i {
             font-size: 2.5rem;
             color: var(--accent-color);
-            margin-bottom: 0.5rem;
         }
 
         h1 {
-            text-align: center;
             color: var(--light-color);
             margin-bottom: 1.5rem;
             font-weight: 700;
         }
 
+        .form-group {
+            margin-bottom: 1.2rem;
+            text-align: left;
+        }
+
         label {
             display: block;
             margin-bottom: 0.5rem;
-            font-weight: 600;
             color: var(--light-color);
+            font-weight: 600;
         }
 
         input {
             width: 100%;
             padding: 0.8rem;
-            margin-bottom: 1.2rem;
             border-radius: 5px;
-            border: 1px solid #ddd;
-            font-family: inherit;
-            transition: border-color 0.3s;
+            background: rgba(255, 255, 255);
+            color: black;
+            box-sizing: border-box;
         }
 
         input:focus {
-            border-color: var(--primary-color);
             outline: none;
+            border-color: var(--primary-color);
             box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
         }
 
         button {
-    width: 100%; /* Match the width of input fields */
-    padding: 0.8rem; /* Uniform padding (same as inputs) */
-    border: none;
-    background: var(--accent-color);
-    color: white;
-    font-weight: 600;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    margin: 0px 14px;
-    transition: background-color 0.3s, transform 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem; /* Space between icon and text */
-}
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            background: var(--accent-color);
+            color: white;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
 
         button:hover {
             background-color: #c0392b;
-            transform: translateY(-2px);
         }
 
-        .error {
-            color: var(--accent-color);
-            text-align: center;
+        .message {
             margin: 1rem 0;
             font-weight: 500;
         }
 
         .success {
-            color: #28a745;
-            text-align: center;
-            margin: 1rem 0;
-            font-weight: 500;
+            color: #2ecc71;
+        }
+
+        .error {
+            color: var(--accent-color);
         }
 
         .links {
-            text-align: center;
             margin-top: 1.5rem;
-            margin: 0px 26px;
+            color: var(--light-color);
         }
 
-        a {
+        .links a {
             color: var(--primary-color);
             text-decoration: none;
-            font-weight: 500;
             transition: color 0.3s;
         }
 
-        a:hover {
+        .links a:hover {
             color: #2980b9;
             text-decoration: underline;
         }
 
         .divider {
             display: flex;
-            align-items: center ;
-            margin: 1.5rem 1.2rem;
-            color: #6c757d;
+            align-items: center;
+            margin: 1.5rem 0;
+            color: rgba(255, 255, 255);
         }
 
-        .divider::before, .divider::after {
+        .divider::before,
+        .divider::after {
             content: "";
             flex: 1;
-            border-bottom: 1px solid #dee2e6;
-
+            border-bottom: 1px solid rgba(255, 255, 255);
         }
 
         .divider::before {
             margin-right: 1rem;
-            margin: 0px 30px;
         }
 
         .divider::after {
             margin-left: 1rem;
-            margin: 0px 30px;
         }
     </style>
 </head>
 <body>
 <div class="form-container">
+    <!-- Logo -->
     <div class="logo">
         <i class="fas fa-car"></i>
     </div>
+
+    <!-- Title -->
     <h1>Login</h1>
 
-    <!-- Success message if coming from registration -->
-    <p class="success" th:if="${param.registered}">
-        <i class="fas fa-check-circle"></i> User successfully registered. Please log in.
-    </p>
+    <!-- Messages -->
+    <div class="message success" th:if="${param.registered}">
+        <i class="fas fa-check-circle"></i> User successfully registered
+    </div>
 
-    <!-- Error message for bad login -->
-    <p class="error" th:if="${param.error}">
+    <div class="message error" th:if="${param.error}">
         <i class="fas fa-exclamation-circle"></i> Invalid username or password
-    </p>
+    </div>
 
+    <!-- Form -->
     <form th:action="@{/login}" method="post">
-        <div>
+        <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" name="username" id="username" required placeholder="Enter your username"/>
+            <input type="text" name="username" id="username" required placeholder="Enter your username">
         </div>
-        <div>
+
+        <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" name="password" id="password" required placeholder="Enter your password"/>
+            <input type="password" name="password" id="password" required placeholder="Enter your password">
         </div>
+
         <button type="submit">
             <i class="fas fa-sign-in-alt"></i> Login
         </button>
     </form>
 
+    <!-- Divider -->
     <div class="divider">OR</div>
 
+    <!-- Links -->
     <div class="links">
         <a href="/register">
             <i class="fas fa-user-plus"></i> Create an account

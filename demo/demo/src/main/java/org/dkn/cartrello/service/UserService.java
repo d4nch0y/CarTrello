@@ -3,7 +3,7 @@ package org.dkn.cartrello.service;
 
 
 import org.dkn.cartrello.repository.UserRepository;
-import org.dkn.cartrello.Models.User;
+import org.dkn.cartrello.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

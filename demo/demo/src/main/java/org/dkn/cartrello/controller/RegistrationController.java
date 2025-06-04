@@ -1,6 +1,6 @@
 package org.dkn.cartrello.controller;
 
-import org.dkn.cartrello.Models.User;
+import org.dkn.cartrello.model.User;
 import org.dkn.cartrello.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,8 +1,8 @@
 package org.dkn.cartrello.controller;
 
-import org.dkn.cartrello.Models.ForumPost;
-import org.dkn.cartrello.Models.Car;
-import org.dkn.cartrello.Models.Reply;
+import org.dkn.cartrello.model.ForumPost;
+import org.dkn.cartrello.model.Car;
+import org.dkn.cartrello.model.Reply;
 import org.dkn.cartrello.repository.CarRepository;
 import org.dkn.cartrello.repository.ForumPostRepository;
 import org.dkn.cartrello.repository.ReplyRepository;

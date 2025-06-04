@@ -1,4 +1,4 @@
-package org.dkn.cartrello.Models;
+package org.dkn.cartrello.model;
 
 import jakarta.persistence.*;
 

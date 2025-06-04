@@ -2,8 +2,8 @@ package org.dkn.cartrello.controller;
 
 import org.dkn.cartrello.repository.CarRepository;
 import org.dkn.cartrello.repository.ForumPostRepository;
-import org.dkn.cartrello.Models.Car;
-import org.dkn.cartrello.Models.ForumPost;
+import org.dkn.cartrello.model.Car;
+import org.dkn.cartrello.model.ForumPost;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
