@@ -165,15 +165,12 @@
 </head>
 <body>
 <div class="form-container">
-    <!-- Logo -->
     <div class="logo">
         <i class="fas fa-car"></i>
     </div>
 
-    <!-- Title -->
     <h1>Login</h1>
 
-    <!-- Messages -->
     <div class="message success" th:if="${param.registered}">
         <i class="fas fa-check-circle"></i> User successfully registered
     </div>
@@ -182,7 +179,6 @@
         <i class="fas fa-exclamation-circle"></i> Invalid username or password
     </div>
 
-    <!-- Form -->
     <form th:action="@{/login}" method="post">
         <div class="form-group">
             <label for="username">Username</label>
@@ -199,10 +195,9 @@
         </button>
     </form>
 
-    <!-- Divider -->
+
     <div class="divider">OR</div>
 
-    <!-- Links -->
     <div class="links">
         <a href="/register">
             <i class="fas fa-user-plus"></i> Create an account

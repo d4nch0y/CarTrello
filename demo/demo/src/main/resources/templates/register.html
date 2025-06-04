@@ -166,15 +166,13 @@
 </head>
 <body>
 <div class="form-container">
-    <!-- Logo -->
+
     <div class="logo">
         <i class="fas fa-car"></i>
     </div>
 
-    <!-- Title -->
     <h1>Register</h1>
 
-    <!-- Form -->
     <form th:action="@{/register}" th:object="${user}" method="post">
         <div class="form-group">
             <label for="username">Username</label>
