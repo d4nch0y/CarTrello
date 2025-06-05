@@ -21,7 +21,7 @@ public class SecurityConfig {
                 // Конфигурира кои URL заявки са разрешени без автентикация
                 .authorizeHttpRequests(auth -> auth
                         // Позволява достъп до тези URL-и без нужда от влизане
-                        .requestMatchers("/login", "/register", "/css/**", "/js/**", "/uploads/**").permitAll()
+                        .requestMatchers("/login", "/register", "/css/**", "/js/**", "/upload/**").permitAll()
                         // Всички останали заявки изискват автентикация
                         .anyRequest().authenticated()
                 )

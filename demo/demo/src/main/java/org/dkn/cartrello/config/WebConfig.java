@@ -9,7 +9,7 @@ public class WebConfig implements WebMvcConfigurer { // Класът импле�
 
     @Override // Презаписва метода от интерфейса WebMvcConfigurer
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/uploads/**") // Казва на Spring да обработва всички заявки към URL-и, започващи с /uploads/
-                .addResourceLocations("file:uploads/"); // Указва физическото местоположение на ресурсите – папката "uploads/" в корена на проекта (на файловата система)
+        registry.addResourceHandler("/static/upload/**") // Казва на Spring да обработва всички заявки към URL-и, започващи с /uploads/
+                .addResourceLocations("file:upload/"); // Указва физическото местоположение на ресурсите – папката "uploads/" в корена на проекта (на файловата система)
     }
 }
