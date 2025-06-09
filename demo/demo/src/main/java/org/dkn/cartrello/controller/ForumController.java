@@ -108,8 +108,6 @@ public class ForumController {
         model.addAttribute("carId", carId);
         return "forum_edit_form";
     }
-
-
     @PostMapping("/car/{carId}/forum/{forumId}/edit")
     public String updateForumPost(@PathVariable Long carId,
                                   @PathVariable Long forumId,

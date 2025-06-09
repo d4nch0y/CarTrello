@@ -71,8 +71,7 @@ public class CarController {
         if (!image.isEmpty()) {
             // Генерира уникално име за снимката и я записва в папка uploads
             String fileName = UUID.randomUUID() + "_" + image.getOriginalFilename();
-            Path uploadPath = Paths.get("/Users/da4to/OneDrive/Desktop/CarTrello(Backend_bez_hubav_frontend)/CarTrello/CarTrello/demo/demo/src/main/resources/static/upload");
-            if (!Files.exists(uploadPath)) Files.createDirectories(uploadPath);
+            Path uploadPath = Paths.get("upload");
             Files.copy(image.getInputStream(), uploadPath.resolve(fileName), StandardCopyOption.REPLACE_EXISTING);
             car.setPhotoFilename(fileName); // Записва името на снимката в обекта
         }
@@ -142,7 +141,7 @@ public class CarController {
         if (!image.isEmpty()) {
             String fileName = UUID.randomUUID() + "_" + image.getOriginalFilename();
             Path uploadPath = Paths.get("upload");
-            if (!Files.exists(uploadPath)) Files.createDirectories(uploadPath);
+
             Files.copy(image.getInputStream(), uploadPath.resolve(fileName), StandardCopyOption.REPLACE_EXISTING);
             car.setPhotoFilename(fileName);
         }
