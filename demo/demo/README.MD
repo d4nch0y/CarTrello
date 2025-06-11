@@ -2,9 +2,44 @@
 
 ## Основни принципи
 
-Docker Compose ви позволява да дефинирате и управлявате приложения с множество контейнери. Ключови концепции:
 
-markdown
+Docker Compose позволява дефиниране и управление на приложения с множество контейнери. В случая имаме два основни сервиса:
+
+База данни MySQL
+
+Spring Boot приложение
+
+## Компоненти на системата
+### 1. MySQL база данни
+Използва официален образ mysql:8
+
+Конфигурира се с:
+
+Име на база: CarTrello
+
+Потребител: root
+
+Парола: Dani24117318
+
+Порт 3306 е изложен на хост машината
+
+Данните се съхраняват в Docker volume db_data
+
+2. Spring Boot приложение
+   Създава се от Dockerfile в корена на проекта
+
+Зависи от базата данни (depends_on: db)
+
+Използва следните environment variables за връзка с DB:
+
+SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/CarTrello
+
+SPRING_DATASOURCE_USERNAME: root
+
+SPRING_DATASOURCE_PASSWORD: Dani24117318
+
+Порт 8080 е изложен на хост машината
+
 ## Изграждане и стартиране на Docker контейнерите
 
 ### 1. Предварителни изисквания
@@ -15,7 +50,7 @@ markdown
 ## Структура на файловете
 
 
-    ```bash
+```bash
 
       C:.
         ├───.idea
@@ -67,23 +102,17 @@ markdown
         └───test-classes
         └───CarTrello
         └───demo
-
+```
 ## Пример за създаване на docker-compose
 
-Start containers in detached mode
-docker-compose up -d
+Стартиране на docker
+docker build -t cartrllo
 
-Stop containers
-docker-compose down
 
-Rebuild containers
-docker-compose up -d --build
+Създаване на docker-composed
+docker-compose up --build 
 
-View logs
-docker-compose logs -f
 
-Execute command in running container
-docker-compose exec app bash
 
 
 ## Примерен docker-compose.yml файл
@@ -125,6 +154,7 @@ volumes:
 
 networks:
   cartrllo-net:
+```
 
 
 
